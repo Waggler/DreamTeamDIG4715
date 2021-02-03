@@ -45,3 +45,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1319264231
+    locked: 0
+  - name: Level Background
+    uniqueID: 3114765573
+    locked: 0
+  - name: Ground
+    uniqueID: 2216723859
+    locked: 0
+  - name: Sprites
+    uniqueID: 3035765533
+    locked: 0
+  - name: Player
+    uniqueID: 1047149625
+    locked: 0
