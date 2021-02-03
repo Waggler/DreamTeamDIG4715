@@ -39,7 +39,7 @@ public class GroundCheck : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Head")
         {
-            Player.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 15f), ForceMode2D.Impulse);
+            Player.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 25f), ForceMode2D.Impulse);
             Debug.Log("Bounce on Enemy");
             Destroy(collision.gameObject);
         }

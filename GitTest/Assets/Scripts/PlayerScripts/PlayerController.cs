@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f; //determines move speed
     public float sprintSpeed = 10f; //determines move speed when sprinting
     public float crouchSpeed = 2f; ////determines move speed when crouching 
-    //public float dashForce;
-    //public float currentDashTimer;
-    //public float startDashTimer;
-    //public float dashDirection;
-    //float movX;
+    /*
+    public float dashForce;
+    public float currentDashTimer;
+    public float startDashTimer;
+    public float dashDirection;
+    float movX;
+    */
     public bool isGrounded = true;
     //public bool hasJumped = false;
     public bool isDashing = false;
@@ -29,13 +31,37 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Jump();
-        //movX = Input.GetAxis("Horizontal");
+        /*
+        movX = Input.GetAxis("Horizontal");
+
+        rb.velocity = new Vector2(movX * moveSpeed, rb.velocity.y);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded && movX != 0)
+        {
+            isDashing = true;
+            currentDashTimer = startDashTimer;
+            rb.velocity = Vector2.zero;
+            dashDirection = (int)movX;
+
+        }
+        if (isDashing)
+        {
+            rb.velocity = transform.right * dashDirection * dashForce;
+
+            currentDashTimer -= Time.deltaTime;
+
+            if(currentDashTimer <= 0)
+            {
+                isDashing = false;
+            }
+        }
+        */
 
         if (Input.GetButton("shift") == true) //if shift is held, increase jumpPower and moveSpeed
         {
             moveSpeed = sprintSpeed; //set move speed to increased sprint speed
             jumpPower = 25f; //increase jumpPower
-            isDashing = true; // set dashing to true
+            //isDashing = true; // set dashing to true
 
             Debug.Log("Start Sprinting");
         }
