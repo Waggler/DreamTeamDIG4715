@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
 
+    public Animator animator;
+
+    float horizontalMove = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +61,7 @@ public class PlayerController : MonoBehaviour
         }
         */
 
-        if (Input.GetButton("shift") == true) //if shift is held, increase jumpPower and moveSpeed
+        if (Input.GetButton("shift") == true && isGrounded == true) //if shift is held, increase jumpPower and moveSpeed
         {
             moveSpeed = sprintSpeed; //set move speed to increased sprint speed
             jumpPower = 25f; //increase jumpPower
@@ -79,13 +83,14 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f); //set horiztonal movement parameters
         transform.position += movement * Time.deltaTime * moveSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
     }
     void Jump() //method with Jump and Ground check
     {
         if (Input.GetButtonDown("Jump") && isGrounded == true) //if the jump button is pressed and the player is on the ground, the player jumps
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpPower), ForceMode2D.Impulse); //jumps to the height of jump power
-
+            animator.SetBool("IsJumping", true);
             Debug.Log("Jumped");
         }
 
