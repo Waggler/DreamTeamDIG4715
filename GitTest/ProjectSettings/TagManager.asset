@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Head
   - Barrel
+  - Collectible
   layers:
   - Default
   - TransparentFX
