@@ -8,7 +8,7 @@ TagManager:
   - Enemy
   - Head
   - Barrel
-  - Banana
+  - Collectible
   layers:
   - Default
   - TransparentFX

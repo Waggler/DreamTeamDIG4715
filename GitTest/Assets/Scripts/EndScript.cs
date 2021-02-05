@@ -7,13 +7,15 @@ using UnityEngine.UI;
 public class EndScript : MonoBehaviour
 {
 
-    public void PlayAgain()
+    public void MainMenu()
     {
         SceneManager.LoadScene("Main Menu");
     }
 
     public void QuitGame()
     {
+        Debug.Log("Quit Game!");
+
         Application.Quit();
     }
 
