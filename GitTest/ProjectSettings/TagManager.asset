@@ -9,6 +9,10 @@ TagManager:
   - Head
   - Barrel
   - Collectible
+  - Banana
+  - Letter
+  - 1Up
+  - BananaBunch
   layers:
   - Default
   - TransparentFX
