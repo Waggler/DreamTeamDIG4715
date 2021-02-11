@@ -13,6 +13,7 @@ TagManager:
   - Letter
   - 1Up
   - BananaBunch
+  - Particle
   layers:
   - Default
   - TransparentFX
