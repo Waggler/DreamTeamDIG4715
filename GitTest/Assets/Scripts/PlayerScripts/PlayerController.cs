@@ -8,6 +8,25 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f; //determines move speed
     public float sprintSpeed = 10f; //determines move speed when sprinting
     public float crouchSpeed = 2f; ////determines move speed when crouching 
+
+    public bool isRolling = false;
+
+    public bool canDash = true;
+    public float rollingTime;
+    public float rollSpeed;
+    public float rollWait = 2f;
+
+    private int direction;
+
+    public GameObject Enemy;
+    public GameObject Enemy2;
+    public GameObject Rhino;
+
+    /*
+    public float rollDistance = 30f;
+    public float rollTimer = 0f;
+    */
+
     /*
     public float dashForce;
     public float currentDashTimer;
@@ -18,72 +37,102 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;
     //public bool hasJumped = false;
     public bool isDashing = false;
+    public bool hasRhino = false;
+
+    public Transform obj;
 
     Rigidbody2D rb;
 
     public Animator animator;
 
+    
     float horizontalMove = 0f;
+    private SpriteRenderer mySpriteRenderer; // variable to hold a reference to our SpriteRenderer component
+  
 
+    private void Awake() // This function is called just one time by Unity the moment the component loads
+    {
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();// get a reference to the SpriteRenderer component on this gameObject
+    }
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        obj = GameObject.FindWithTag("Enemy").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         Jump();
-        /*
-        movX = Input.GetAxis("Horizontal");
-
-        rb.velocity = new Vector2(movX * moveSpeed, rb.velocity.y);
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded && movX != 0)
+        if (Input.GetKey(KeyCode.A))
         {
-            isDashing = true;
-            currentDashTimer = startDashTimer;
-            rb.velocity = Vector2.zero;
-            dashDirection = (int)movX;
-
+            animator.SetBool("IsWalking", true);
+            direction = 1;
+            mySpriteRenderer.flipX = true;
         }
-        if (isDashing)
+        else if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity = transform.right * dashDirection * dashForce;
-
-            currentDashTimer -= Time.deltaTime;
-
-            if(currentDashTimer <= 0)
-            {
-                isDashing = false;
-            }
+            animator.SetBool("IsWalking", true);
+            direction = 2;
+            mySpriteRenderer.flipX = false;
         }
-        */
-
-        if (Input.GetButton("shift") == true && isGrounded == true) //if shift is held, increase jumpPower and moveSpeed
+        else
         {
+            animator.SetBool("IsWalking", false);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true && hasRhino == false)
+        {
+            dkRoll();
+        }
+
+        if (Input.GetButton("shift") == true && hasRhino == false && isGrounded == true) //if shift is held, increase jumpPower and moveSpeed
+        {
+            animator.SetBool("IsSprinting", true);
             moveSpeed = sprintSpeed; //set move speed to increased sprint speed
             jumpPower = 25f; //increase jumpPower
-            //isDashing = true; // set dashing to true
-
+            
             Debug.Log("Start Sprinting");
         }
-        else if(Input.GetKey("s")) //if s is held, decrease moveSpeed
+        else if (Input.GetKey("s")) //if s is held, decrease moveSpeed
         {
             moveSpeed = crouchSpeed; //set move speed to reduced crouch speed
 
             Debug.Log("Crouched");
         }
+        else if (hasRhino == true)
+        {
+            moveSpeed = 10f; //reset moveSpeed and jumpPower variables
+            jumpPower = 10f;
+        }
         else
         {
             moveSpeed = 5f; //reset moveSpeed and jumpPower variables
             jumpPower = 20f;
+            animator.SetBool("IsSprinting", false);
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            animator.SetBool("IsRhino", false);
+            hasRhino = false;
+            
         }
 
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f); //set horiztonal movement parameters
         transform.position += movement * Time.deltaTime * moveSpeed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        //animator.SetFloat("Speed", Mathf.Abs(moveSpeed));
+
+        /*
+        rollTimer += Time.deltaTime;
+
+        if (rollTimer > rollWait)
+        {
+            rollTimer = rollTimer - rollWait;
+            isDashing = false;
+        }
+        */
     }
     void Jump() //method with Jump and Ground check
     {
@@ -101,10 +150,57 @@ public class PlayerController : MonoBehaviour
     }
     public void CheckIfDead(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && isRolling == false && hasRhino == false)
         {
             gameObject.SetActive(false);
         }
+        else if (collision.gameObject.tag == "Enemy" && isRolling == true)
+        {
+            //Enemy.gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.tag == "Enemy" && hasRhino == true)
+        {
+            //Enemy.gameObject.SetActive(false);
+            //Enemy2.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.tag == "Rhino")
+        {
+            hasRhino = true;
+            animator.SetBool("IsRhino", true);
+            Destroy(Rhino.gameObject);
+        }
+
+
+    }
+    void dkRoll()
+    {
+        if(canDash)
+        {
+            StartCoroutine(Roll());
+        }
+    }
+    IEnumerator Roll()
+    {
+        canDash = false;
+        
+        if (direction == 1)
+        {
+            rb.velocity = new Vector2(-rollSpeed, 0);
+        }
+        else
+        {
+            rb.velocity = new Vector2(rollSpeed, 0);
+        }
+        isRolling = true;
+        animator.SetBool("IsRolling", true);
+        //moveSpeed = rollSpeed;
+        yield return new WaitForSeconds(rollingTime);
+        isRolling = false;
+        animator.SetBool("IsRolling", false);
+        moveSpeed = 5;
+        yield return new WaitForSeconds(rollWait);
+        canDash = true;
+
     }
 
     /*private void oldJump()
@@ -124,4 +220,6 @@ public class PlayerController : MonoBehaviour
         }
     }*/
 }
+
+
 

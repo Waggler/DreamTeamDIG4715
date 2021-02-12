@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerAnim : MonoBehaviour
 {
     private SpriteRenderer mySpriteRenderer; // variable to hold a reference to our SpriteRenderer component
+    Animator animator;
 
     private void Awake() // This function is called just one time by Unity the moment the component loads
     {
-        mySpriteRenderer = GetComponent<SpriteRenderer>(); // get a reference to the SpriteRenderer component on this gameObject
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();// get a reference to the SpriteRenderer component on this gameObject
     }
 
     private void Update()  // This function is called by Unity every frame the component is enabled
@@ -27,5 +29,16 @@ public class PlayerAnim : MonoBehaviour
             // flip the sprite
             mySpriteRenderer.flipX = false;
         }
+
+        /*
+         * void OnCollisionEnter(Collision col)
+        {
+            if (col.gameObject.CompareTag("Enemy"))
+            {
+                animator.SetTrigger("Die");
+            }
+        }*/
+
     }
+
 }

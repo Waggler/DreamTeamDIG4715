@@ -5313,7 +5313,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: cf8e88e67f87a0f4e9bc325d41756180, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.16848457}
@@ -5448,6 +5448,8 @@ GameObject:
   - component: {fileID: 291166515}
   - component: {fileID: 291166519}
   - component: {fileID: 291166518}
+  - component: {fileID: 291166520}
+  - component: {fileID: 291166521}
   m_Layer: 0
   m_Name: Banana
   m_TagString: Banana
@@ -5568,6 +5570,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   banana: 1
+--- !u!114 &291166520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291166514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc15f4f752de5a1429a7593730a09cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &291166521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291166514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2f2267606205c49ad930b5ab29afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &434799647
 GameObject:
   m_ObjectHideFlags: 0
@@ -5815,7 +5841,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2789693, y: 7.62, z: -10}
+  m_LocalPosition: {x: -2.0115564, y: 7.62, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1197708367}
@@ -6155,6 +6181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 740162034}
   - component: {fileID: 740162035}
+  - component: {fileID: 740162036}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Enemy
@@ -6186,7 +6213,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.6474689, y: -0.61918104}
@@ -6202,6 +6229,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.45362, y: 3.6795151}
   m_EdgeRadius: 0
+--- !u!114 &740162036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740162033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3b1db1379e78b418cad98d453e6c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 798339590}
+  playerRhino: 0
+  playerRolling: 0
+--- !u!1 &798339590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4888739432364652071, guid: 3c758414057ba9c4787197a20a545e7e, type: 3}
+  m_PrefabInstance: {fileID: 4888739433114184226}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &808993434
 GameObject:
   m_ObjectHideFlags: 0
@@ -7456,6 +7503,8 @@ GameObject:
   - component: {fileID: 1324604228}
   - component: {fileID: 1324604232}
   - component: {fileID: 1324604231}
+  - component: {fileID: 1324604233}
+  - component: {fileID: 1324604234}
   m_Layer: 0
   m_Name: BananaBunch
   m_TagString: BananaBunch
@@ -7576,6 +7625,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bananaBunch: 5
+--- !u!114 &1324604233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324604227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc15f4f752de5a1429a7593730a09cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1324604234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324604227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2f2267606205c49ad930b5ab29afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1342076857
 GameObject:
   m_ObjectHideFlags: 0
@@ -7586,6 +7659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1342076858}
   - component: {fileID: 1342076859}
+  - component: {fileID: 1342076860}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Enemy
@@ -7617,7 +7691,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.6474689, y: -0.61918104}
@@ -7633,6 +7707,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.45362, y: 3.6795151}
   m_EdgeRadius: 0
+--- !u!114 &1342076860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342076857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3b1db1379e78b418cad98d453e6c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 798339590}
+  playerRhino: 0
+  playerRolling: 0
 --- !u!1 &1348559429
 GameObject:
   m_ObjectHideFlags: 0
@@ -9204,6 +9293,7 @@ GameObject:
   - component: {fileID: 1942495966}
   - component: {fileID: 1942495965}
   - component: {fileID: 1942495969}
+  - component: {fileID: 1942495970}
   m_Layer: 0
   m_Name: 1Up Balloon
   m_TagString: 1Up
@@ -9334,6 +9424,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balloon: 1
+--- !u!114 &1942495970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942495964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2f2267606205c49ad930b5ab29afa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1963042551
 GameObject:
   m_ObjectHideFlags: 0
@@ -9346,7 +9448,7 @@ GameObject:
   - component: {fileID: 1963042553}
   m_Layer: 0
   m_Name: Groundcheck
-  m_TagString: Player
+  m_TagString: Rhino
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10001,5 +10103,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4888739432364652074, guid: 3c758414057ba9c4787197a20a545e7e, type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 1999609392}
+    - target: {fileID: 4888739432364652074, guid: 3c758414057ba9c4787197a20a545e7e, type: 3}
+      propertyPath: Enemy2
+      value: 
+      objectReference: {fileID: 1430250940}
+    - target: {fileID: 4888739432364652074, guid: 3c758414057ba9c4787197a20a545e7e, type: 3}
+      propertyPath: Rhino
+      value: 
+      objectReference: {fileID: 266570290}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c758414057ba9c4787197a20a545e7e, type: 3}

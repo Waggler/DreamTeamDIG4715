@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24945a060628ace49a6b6e7a979fd08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 944314515}
 --- !u!61 &4888739432147729182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -355,8 +356,19 @@ MonoBehaviour:
   moveSpeed: 5
   sprintSpeed: 10
   crouchSpeed: 2
+  isRolling: 0
+  canDash: 1
+  rollingTime: 0.2
+  rollSpeed: 20
+  rollWait: 2
+  Enemy: {fileID: 0}
+  Enemy2: {fileID: 0}
+  Rhino: {fileID: 0}
   isGrounded: 0
   isDashing: 0
+  hasRhino: 0
+  obj: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &5949467247323385890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +376,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4888739432364652071}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fe6819a818af574ab631a020cb04481, type: 3}
   m_Name: 

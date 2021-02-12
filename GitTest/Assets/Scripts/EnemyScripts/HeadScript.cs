@@ -24,9 +24,11 @@ public class HeadScript : MonoBehaviour
 
     void CheckIfDead(Collider2D collision)
     {
+        
         if (collision.gameObject.tag == "Player")
         {
             Destroy(transform.parent.gameObject);
         }
+
     }
 }
