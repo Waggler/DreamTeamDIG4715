@@ -15,6 +15,7 @@ TagManager:
   - BananaBunch
   - Particle
   - Rhino
+  - Killzone
   layers:
   - Default
   - TransparentFX

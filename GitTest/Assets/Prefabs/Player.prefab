@@ -188,7 +188,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5639549, y: 0}
+  m_Offset: {x: 0.56395483, y: 0.08109151}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -199,7 +199,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.8627415, y: 0.41}
+  m_Size: {x: 4.8627415, y: 1.333378}
   m_EdgeRadius: 0
 --- !u!1 &4888739432364652071
 GameObject:
@@ -327,7 +327,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.4029385, y: -0.05}
+  m_Offset: {x: -0.40293837, y: 0.16119194}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -338,7 +338,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.6081047, y: 4.8061686}
+  m_Size: {x: 4.6081047, y: 4.3837852}
   m_EdgeRadius: 0
 --- !u!114 &4888739432364652074
 MonoBehaviour:
@@ -359,7 +359,7 @@ MonoBehaviour:
   isRolling: 0
   canDash: 1
   rollingTime: 0.2
-  rollSpeed: 20
+  rollSpeed: 15
   rollWait: 2
   Enemy: {fileID: 0}
   Enemy2: {fileID: 0}
