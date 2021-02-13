@@ -1,0 +1,2 @@
+C:\Users\khdav\Desktop\Starter_Repo\DreamTeamDIG4715\GitTest\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\khdav\Desktop\Starter_Repo\DreamTeamDIG4715\GitTest\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

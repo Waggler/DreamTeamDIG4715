@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2464059923737664851
 Transform:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 7055544051145884725}
   - component: {fileID: 7055544051323422407}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: CharTest_DK
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,6 +245,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31cadfb02b6239146aab44fa50049482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
+  dkSpeed: 0
+  dkJump: 25
+  dkSprint: 20
+  dkWalk: 10
   jumpPower: 20
   moveSpeed: 5
   sprintSpeed: 10
@@ -383,6 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7055544051323422407}
+  particles: {fileID: 0}
 --- !u!61 &2464059924894049610
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -494,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7055544051490737544
 Transform:
   m_ObjectHideFlags: 0
@@ -524,7 +532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7055544051659249215
 Transform:
   m_ObjectHideFlags: 0

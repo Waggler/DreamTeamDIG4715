@@ -2603,7 +2603,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.412373, y: 13.151378, z: -10}
+  m_LocalPosition: {x: -30.820848, y: 13.151378, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1197708367}
@@ -3389,38 +3389,6 @@ PrefabInstance:
     - target: {fileID: 2464059924708321395, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
       propertyPath: m_Name
       value: CharTest_DK
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464059924708321406, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
-      propertyPath: dkJump
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464059924708321406, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
-      propertyPath: dkSprint
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464059924708321406, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
-      propertyPath: dkWalk
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464059924708321406, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464059924708321407, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 8.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464059924708321407, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 6.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464059924708321407, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.4029385
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464059924708321407, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
-      propertyPath: m_Offset.y
-      value: -1.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
@@ -4722,6 +4690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rambi
       objectReference: {fileID: 0}
+    - target: {fileID: 5666346307475169052, guid: a4967ebe820eceb49839bbb9f5bddaab, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4967ebe820eceb49839bbb9f5bddaab, type: 3}
 --- !u!4 &907787158 stripped
@@ -5832,6 +5804,10 @@ PrefabInstance:
     - target: {fileID: 6934284533886576849, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
       propertyPath: m_Name
       value: BigBeaver
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934284533886576849, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
@@ -8074,6 +8050,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 234738829}
     m_Modifications:
+    - target: {fileID: 6415638603823309440, guid: 92d2c091b0d6ec04896e130529f83144, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6415638603823309443, guid: 92d2c091b0d6ec04896e130529f83144, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10618,6 +10598,10 @@ PrefabInstance:
     - target: {fileID: 6822054290948034773, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
       propertyPath: m_Name
       value: Beaver
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822054290948034773, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6822054290948034774, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
       propertyPath: m_LocalPosition.x

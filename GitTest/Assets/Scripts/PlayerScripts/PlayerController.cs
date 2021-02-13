@@ -78,25 +78,32 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.Space) && DkGrounded())
         {
             float dkJump = 20f;
             rb.velocity = Vector2.up * dkJump;
+            animator.SetBool("IsJumping", true);
         }
-        if (Input.GetKey(KeyCode.E))
+        else if (Input.GetKey(KeyCode.E))
         {
             animator.SetBool("IsRhino", false);
             hasRhino = false;
 
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && DkGrounded() && hasRhino == false)
+        else if (Input.GetKeyDown(KeyCode.R) && DkGrounded() && hasRhino == false)
         {
             dkRoll();
         }
-        if (Input.GetKey(KeyCode.LeftShift) && DkGrounded())
+        else if (Input.GetKey(KeyCode.LeftShift) && DkGrounded())
         {
             dkSpeed = dkSprint;
             animator.SetBool("IsSprinting", true);
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Space) && DkGrounded() && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) == true)
+        {
+            animator.SetBool("IsJumping", true);
         }
         else
         {
@@ -183,20 +190,26 @@ public class PlayerController : MonoBehaviour
 
     private bool DkGrounded()
     {
-        float extraHeightText = 1f;
+        float extraHeightText = 0.5f;
         //RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2d.bounds.center, Vector2.down, boxCollider2d.bounds.extents.y + extraHeightText, groundMask);
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, extraHeightText, groundMask);
         Color rayColor;
         if (raycastHit.collider != null)
         {
+            if(raycastHit.transform.gameObject.layer == groundMask)
+            {
+                animator.SetBool("IsJumping", false);
+            }
             rayColor = Color.green;
-            animator.SetBool("IsJumping", true);
+            
         }
         else
         {
             rayColor = Color.red;
         }
-        Debug.DrawRay(boxCollider2d.bounds.center, Vector2.down * (boxCollider2d.bounds.extents.y + extraHeightText));
+        Debug.DrawRay(boxCollider2d.bounds.center + new Vector3(boxCollider2d.bounds.extents.x, 0), Vector2.down * (boxCollider2d.bounds.extents.y + extraHeightText));
+        Debug.DrawRay(boxCollider2d.bounds.center - new Vector3(boxCollider2d.bounds.extents.x, 0), Vector2.down * (boxCollider2d.bounds.extents.y + extraHeightText));
+        Debug.DrawRay(boxCollider2d.bounds.center + new Vector3(boxCollider2d.bounds.extents.x, boxCollider2d.bounds.extents.y), Vector2.right * (boxCollider2d.bounds.extents.x));
         Debug.Log(raycastHit.collider);
         return raycastHit.collider != null;
     }
