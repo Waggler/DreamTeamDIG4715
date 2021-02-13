@@ -42,7 +42,7 @@ public class GroundCheck : MonoBehaviour
         {
             Player.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 25f), ForceMode2D.Impulse);
             Debug.Log("Bounce on Enemy");
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
 }

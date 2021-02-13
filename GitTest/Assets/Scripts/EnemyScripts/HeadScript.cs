@@ -30,7 +30,8 @@ public class HeadScript : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //Destroy(transform.parent.gameObject);
-            Enemy.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            transform.parent.gameObject.SetActive(false);
+            //Enemy.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             Debug.Log("head hit");
         }
 

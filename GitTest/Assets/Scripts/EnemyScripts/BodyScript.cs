@@ -36,8 +36,9 @@ public class BodyScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && playerRhino == true || collision.gameObject.tag == "Player" && playerRolling == true)
         {
+            transform.parent.gameObject.SetActive(false);
             //Destroy(transform.parent.gameObject);
-            Enemy.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            //Enemy.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             Debug.Log("body hit");
         }
     }
