@@ -16,6 +16,7 @@ TagManager:
   - Particle
   - Rhino
   - Killzone
+  - Raycaster
   layers:
   - Default
   - TransparentFX
