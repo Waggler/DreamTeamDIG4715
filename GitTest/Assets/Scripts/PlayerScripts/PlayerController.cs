@@ -22,6 +22,15 @@ public class PlayerController : MonoBehaviour
     public GameObject Enemy2;
     public GameObject Rhino;
 
+    public AudioSource aSource;
+    public AudioClip deathGrunt;
+    public AudioClip bigDeathGrunt;
+    public AudioClip whack;
+    public AudioClip letter;
+    public AudioClip balloon;
+    public AudioClip jump;
+
+
     /*
     public float rollDistance = 30f;
     public float rollTimer = 0f;
