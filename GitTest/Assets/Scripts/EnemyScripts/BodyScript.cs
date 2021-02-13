@@ -5,6 +5,7 @@ using UnityEngine;
 public class BodyScript : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject Enemy;
 
     public bool playerRhino;
     public bool playerRolling;
@@ -35,7 +36,9 @@ public class BodyScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && playerRhino == true || collision.gameObject.tag == "Player" && playerRolling == true)
         {
-            Destroy(transform.parent.gameObject);
+            //Destroy(transform.parent.gameObject);
+            Enemy.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            Debug.Log("body hit");
         }
     }
 }

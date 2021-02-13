@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HeadScript : MonoBehaviour
 {
+
+    public GameObject Enemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,9 @@ public class HeadScript : MonoBehaviour
         
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(transform.parent.gameObject);
+            //Destroy(transform.parent.gameObject);
+            Enemy.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            Debug.Log("head hit");
         }
 
     }

@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && isRolling == false && hasRhino == false)
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
         else if (collision.gameObject.tag == "Enemy" && isRolling == true)
         {

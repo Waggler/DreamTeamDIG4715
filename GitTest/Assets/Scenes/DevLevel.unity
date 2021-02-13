@@ -812,7 +812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8392799, y: -0.67, z: -10}
+  m_LocalPosition: {x: -1.6575792, y: -0.67, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1197708367}
@@ -3917,6 +3917,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6822054290717164475, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 1999609392}
     - target: {fileID: 6822054290948034768, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
       propertyPath: moveSpots.Array.data[0]
       value: 
@@ -3981,6 +3985,10 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 798339590}
+    - target: {fileID: 6822054291601192721, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 1999609392}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
 --- !u!1001 &6909711367598823976
@@ -4111,6 +4119,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 798339590}
+    - target: {fileID: 6934284534041737937, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 1430250940}
+    - target: {fileID: 6934284534169920864, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 1430250940}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
 --- !u!1001 &8052854140981473849
