@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 7055544051145884725}
   - component: {fileID: 7055544051323422407}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: CharTest_DK
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,6 +245,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31cadfb02b6239146aab44fa50049482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
+  dkSpeed: 0
+  dkJump: 20
+  dkSprint: 20
+  dkWalk: 10
   jumpPower: 20
   moveSpeed: 5
   sprintSpeed: 10
