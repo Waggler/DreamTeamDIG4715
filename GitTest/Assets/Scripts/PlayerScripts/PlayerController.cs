@@ -96,10 +96,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && DkGrounded())
         {
             dkSpeed = dkSprint;
+            animator.SetBool("IsSprinting", true);
         }
         else
         {
             dkSpeed = dkWalk;
+            animator.SetBool("IsSprinting", false);
         }
 
         /*if (Input.GetKey(KeyCode.A))
@@ -188,6 +190,7 @@ public class PlayerController : MonoBehaviour
         if (raycastHit.collider != null)
         {
             rayColor = Color.green;
+            animator.SetBool("IsJumping", true);
         }
         else
         {

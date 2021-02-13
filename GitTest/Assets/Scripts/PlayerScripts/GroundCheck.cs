@@ -6,6 +6,7 @@ public class GroundCheck : MonoBehaviour
 {
     GameObject Player;
     public Animator animator;
+    public ParticleSystem particles;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,9 @@ public class GroundCheck : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Head")
         {
+            Instantiate(particles, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            particles.gameObject.SetActive(true);
+            particles.Play();
             Player.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 25f), ForceMode2D.Impulse);
             Debug.Log("Bounce on Enemy");
             //Destroy(collision.gameObject);
