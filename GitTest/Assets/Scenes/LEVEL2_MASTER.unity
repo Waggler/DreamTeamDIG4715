@@ -2864,6 +2864,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharTest_DK
       objectReference: {fileID: 0}
+    - target: {fileID: 2464059924708321406, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
+      propertyPath: RamiSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464059924708321406, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
+      propertyPath: bounceJump
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464059924708321406, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
+      propertyPath: RamiJump
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464059924708321406, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 881925986}
     - target: {fileID: 2464059924708321407, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
       propertyPath: m_Size.x
       value: 6.569315
@@ -2882,11 +2898,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2464059924708321407, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 6.97
+      value: 6.65
       objectReference: {fileID: 0}
     - target: {fileID: 2464059924708321407, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 6.97
+      value: 6.65
       objectReference: {fileID: 0}
     - target: {fileID: 2464059924894049610, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
       propertyPath: m_Offset.x
@@ -3391,6 +3407,11 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!95 &881925986 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7055544051323422407, guid: 2ff472e56abb6a94a8d62737850bf523, type: 3}
+  m_PrefabInstance: {fileID: 612938295}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &884687376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3445,10 +3466,6 @@ PrefabInstance:
     - target: {fileID: 5666346307475169052, guid: a4967ebe820eceb49839bbb9f5bddaab, type: 3}
       propertyPath: m_Name
       value: Rambi
-      objectReference: {fileID: 0}
-    - target: {fileID: 5666346307475169052, guid: a4967ebe820eceb49839bbb9f5bddaab, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4967ebe820eceb49839bbb9f5bddaab, type: 3}
@@ -4232,11 +4249,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6934284533886576812, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.72753
+      value: -15.83
       objectReference: {fileID: 0}
     - target: {fileID: 6934284533886576812, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.625246
+      value: 10.83
       objectReference: {fileID: 0}
     - target: {fileID: 6934284533886576812, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4277,10 +4294,6 @@ PrefabInstance:
     - target: {fileID: 6934284533886576849, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
       propertyPath: m_Name
       value: BigBeaver
-      objectReference: {fileID: 0}
-    - target: {fileID: 6934284533886576849, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8c81be67aed60d4489187e0deccc7b2, type: 3}
@@ -8280,21 +8293,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6822054290717164472, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6822054290948034773, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
       propertyPath: m_Name
       value: Beaver
       objectReference: {fileID: 0}
-    - target: {fileID: 6822054290948034773, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6822054290948034774, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.422683
+      value: -18.2
       objectReference: {fileID: 0}
     - target: {fileID: 6822054290948034774, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.357482
+      value: 10.3
       objectReference: {fileID: 0}
     - target: {fileID: 6822054290948034774, guid: 996be17a4472d4543b69c66c83b46757, type: 3}
       propertyPath: m_LocalPosition.z
