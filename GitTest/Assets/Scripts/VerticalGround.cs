@@ -5,7 +5,7 @@ using UnityEngine;
 public class VerticalGround : MonoBehaviour
 {
     private PlatformEffector2D effector;
-    public float waitTime;
+    private float waitTime = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +16,12 @@ public class VerticalGround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+        if (Input.GetKeyUp(KeyCode.S))
         {
             waitTime = 0.05f;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
             if (waitTime <= 0)
             {
@@ -34,7 +34,7 @@ public class VerticalGround : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             effector.rotationalOffset = 0;
         }
