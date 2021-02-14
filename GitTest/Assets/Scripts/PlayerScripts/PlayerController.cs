@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public float dkJump;
     public float dkSprint;
     public float dkWalk;
+    public float timer;
+    public float waitTime = 2;
+    public float timerReset= 0;
 
 
     public float jumpPower = 20f; //determines height of jump
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float rollingTime;
     public float rollSpeed;
     public float rollWait = 2f;
+    public float rollTimer = 0.5f;
 
     private int direction;
 
@@ -48,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform obj;
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     public Animator animator;
 
@@ -58,6 +62,11 @@ public class PlayerController : MonoBehaviour
 
     private BoxCollider2D boxCollider2d;
 
+    public Vector3 moveRight;
+    public Vector3 moveLeft;
+    Vector3 tempVectRight;
+    Vector3 tempVectLeft;
+    private bool canRoll = false;
 
 
 
@@ -66,19 +75,83 @@ public class PlayerController : MonoBehaviour
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();// get a reference to the SpriteRenderer component on this gameObject
-        boxCollider2d = transform.GetComponent<BoxCollider2D>();
+        boxCollider2d = GetComponent<BoxCollider2D>();
 
     }
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        moveRight = new Vector3(20f, 0f, 0);
+        moveLeft = new Vector3(-20f, 0, 0);
+
+        tempVectRight = new Vector3(1000, 0, 0);
+        tempVectRight = tempVectRight.normalized * rollSpeed * Time.deltaTime;
+        
+        
+        tempVectLeft = new Vector3(-1000, 0, 0);
+        tempVectLeft = tempVectLeft.normalized * rollSpeed * Time.deltaTime;
+    }
+
+    /*
+    public void Move()
+    {
+        float xInput = Input.GetAxis("Horizontal");
+
+        float xForce = xInput * dkSpeed * Time.deltaTime;
+
+        Vector2 force = new Vector2(xForce, 0);
+
+        rb.AddForce(force);
+        Debug.Log(rb.velocity);
+    }
+    */
+
+
+
+    IEnumerator StartRoll()
+    {
+        yield return new WaitForSeconds(.5f);
+        canRoll = false;
+        animator.SetBool("IsRolling", false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        
+        if (canRoll)
+        {
+            //Vector3 tempVect = new Vector3(-1000, 0, 0);
+            //tempVect = tempVect.normalized * rollSpeed * Time.deltaTime;
 
+            //Find which direction he needs to go
+            //Replace Vector3(-1000) with the appropriate Vector Direction
+
+            StartCoroutine(StartRoll());
+
+            if(canRoll)
+            {
+
+                if (direction == 1)
+                {
+                    rb.MovePosition(transform.position + tempVectLeft);
+                }
+                else if (direction == 2)
+                {
+                    rb.MovePosition(transform.position + tempVectRight);
+                }
+                
+            }
+            else 
+            {
+                return;
+            }
+
+
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && DkGrounded())
         {
@@ -94,7 +167,31 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.R) && DkGrounded() && hasRhino == false)
         {
-            dkRoll();
+            if (timer > waitTime)
+            {
+                if (direction == 1)
+                {
+
+                    canRoll = true;
+                    //StartCoroutine(StartRoll());
+                    isRolling = true;
+                    animator.SetBool("IsRolling", true);
+                    canDash = false;
+                }
+                else if (direction == 2)
+                {
+                    canRoll = true;
+                    isRolling = true;
+                    animator.SetBool("IsRolling", true);
+                    canDash = false;
+
+                    
+                    //rb.AddForce(moveRight  * 3f);
+                    //this.transform.Translate(moveRight * Time.deltaTime);
+                }
+
+                //canDash = true;
+            }
         }
         else if (Input.GetKey(KeyCode.LeftShift) && DkGrounded())
         {
@@ -162,6 +259,8 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        
+
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         if (Input.GetKey(KeyCode.A))
         {
@@ -186,66 +285,6 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsWalking", false);
             }
         }
-    }
-
-    private bool DkGrounded()
-    {
-        float extraHeightText = 0.5f;
-        //RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2d.bounds.center, Vector2.down, boxCollider2d.bounds.extents.y + extraHeightText, groundMask);
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, extraHeightText, groundMask);
-        Color rayColor;
-        if (raycastHit.collider != null)
-        {
-            if(raycastHit.transform.gameObject.layer == groundMask)
-            {
-                animator.SetBool("IsJumping", false);
-            }
-            rayColor = Color.green;
-            
-        }
-        else
-        {
-            rayColor = Color.red;
-        }
-        Debug.DrawRay(boxCollider2d.bounds.center + new Vector3(boxCollider2d.bounds.extents.x, 0), Vector2.down * (boxCollider2d.bounds.extents.y + extraHeightText));
-        Debug.DrawRay(boxCollider2d.bounds.center - new Vector3(boxCollider2d.bounds.extents.x, 0), Vector2.down * (boxCollider2d.bounds.extents.y + extraHeightText));
-        Debug.DrawRay(boxCollider2d.bounds.center + new Vector3(boxCollider2d.bounds.extents.x, boxCollider2d.bounds.extents.y), Vector2.right * (boxCollider2d.bounds.extents.x));
-        Debug.Log(raycastHit.collider);
-        return raycastHit.collider != null;
-    }
-    void dkRoll()
-    {
-        if (canDash)
-        {
-            StartCoroutine(Roll());
-        }
-    }
-    IEnumerator Roll()
-    {
-        canDash = false;
-
-        if (direction == 1)
-        {
-            //rb.velocity = new Vector2(-rollSpeed, 0);
-            rb.velocity = new Vector2(rollSpeed, rb.velocity.y);
-            //rb.AddForce(transform.forward * rollSpeed);
-        }
-        else
-        {
-            //rb.velocity = new Vector2(rollSpeed, 0);
-            //rb.AddForce(transform.forward * -rollSpeed);
-            rb.velocity = new Vector2(-rollSpeed, rb.velocity.y);
-        }
-        isRolling = true;
-        animator.SetBool("IsRolling", true);
-        //moveSpeed = rollSpeed;
-        yield return new WaitForSeconds(rollingTime);
-        isRolling = false;
-        animator.SetBool("IsRolling", false);
-        //moveSpeed = 5;
-        yield return new WaitForSeconds(rollWait);
-        canDash = true;
-
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -273,6 +312,74 @@ public class PlayerController : MonoBehaviour
             Destroy(Rhino.gameObject);
         }
     }
+    private bool DkGrounded()
+    {
+        float extraHeightText = 0.5f;
+        //RaycastHit2D raycastHit = Physics2D.Raycast(boxCollider2d.bounds.center, Vector2.down, boxCollider2d.bounds.extents.y + extraHeightText, groundMask);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, extraHeightText, groundMask);
+        Color rayColor;
+        if (raycastHit.collider != null)
+        {
+            if (raycastHit.transform.gameObject.layer == groundMask)
+            {
+                animator.SetBool("IsJumping", false);
+            }
+            rayColor = Color.green;
+
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+        Debug.DrawRay(boxCollider2d.bounds.center + new Vector3(boxCollider2d.bounds.extents.x, 0), Vector2.down * (boxCollider2d.bounds.extents.y + extraHeightText));
+        Debug.DrawRay(boxCollider2d.bounds.center - new Vector3(boxCollider2d.bounds.extents.x, 0), Vector2.down * (boxCollider2d.bounds.extents.y + extraHeightText));
+        Debug.DrawRay(boxCollider2d.bounds.center + new Vector3(boxCollider2d.bounds.extents.x, boxCollider2d.bounds.extents.y), Vector2.right * (boxCollider2d.bounds.extents.x));
+        Debug.Log(raycastHit.collider);
+        return raycastHit.collider != null;
+    }
+    /*
+     * void dkRoll()
+    {
+        if (canDash)
+        {
+            StartCoroutine(Roll());
+        }
+    }
+    IEnumerator Roll()
+    {
+        
+
+        if (direction == 1)
+        {
+            //rb.velocity = new Vector2(-rollSpeed, 0);
+            //rb.velocity = new Vector2(rollSpeed, rb.velocity.y);
+            
+            
+            //rb.AddForce(moveRight * rollSpeed);
+        }
+        else
+        {
+            //rb.velocity = new Vector2(rollSpeed, 0);
+            rb.AddForce(moveLeft * rollSpeed);
+            
+            //rb.velocity = new Vector2(-rollSpeed, rb.velocity.y);
+        }
+        isRolling = true;
+        animator.SetBool("IsRolling", true);
+
+        //moveSpeed = rollSpeed;
+        canDash = false;
+        yield return new WaitForSeconds(rollingTime);
+        isRolling = false;
+        
+        animator.SetBool("IsRolling", false);
+        //moveSpeed = 5;
+        
+        yield return new WaitForSeconds(rollWait);
+        canDash = true;
+
+    }
+    */
 
 
     /*
