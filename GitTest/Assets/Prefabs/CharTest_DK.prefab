@@ -252,6 +252,11 @@ MonoBehaviour:
   dkJump: 25
   dkSprint: 20
   dkWalk: 10
+  RamiSpeed: 25
+  RamiJump: 0
+  timer: 0
+  waitTime: 2
+  timerReset: 0
   jumpPower: 20
   moveSpeed: 5
   sprintSpeed: 10
@@ -259,8 +264,9 @@ MonoBehaviour:
   isRolling: 0
   canDash: 1
   rollingTime: 0.5
-  rollSpeed: 15
+  rollSpeed: 2
   rollWait: 0
+  rollTimer: 0.5
   Enemy: {fileID: 0}
   Enemy2: {fileID: 0}
   Rhino: {fileID: 0}
@@ -268,7 +274,10 @@ MonoBehaviour:
   isDashing: 0
   hasRhino: 0
   obj: {fileID: 0}
+  rb: {fileID: 0}
   animator: {fileID: 0}
+  moveRight: {x: 0, y: 0, z: 0}
+  moveLeft: {x: 0, y: 0, z: 0}
 --- !u!114 &3709439001820778102
 MonoBehaviour:
   m_ObjectHideFlags: 0

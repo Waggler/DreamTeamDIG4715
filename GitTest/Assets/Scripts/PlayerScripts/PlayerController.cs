@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour
     public float dkJump;
     public float dkSprint;
     public float dkWalk;
+    public float bounceJump;
     public float RamiSpeed;
     public float RamiJump;
+    public GameObject Ram;
 
 
     public float timer;
@@ -81,8 +83,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();// get a reference to the SpriteRenderer component on this gameObject
         boxCollider2d = GetComponent<BoxCollider2D>();
 
-    }
-    // Start is called before the first frame update
+    } // END
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -96,21 +99,7 @@ public class PlayerController : MonoBehaviour
         
         tempVectLeft = new Vector3(-1000, 0, 0);
         tempVectLeft = tempVectLeft.normalized * rollSpeed * Time.deltaTime;
-    }
-
-    /*
-    public void Move()
-    {
-        float xInput = Input.GetAxis("Horizontal");
-
-        float xForce = xInput * dkSpeed * Time.deltaTime;
-
-        Vector2 force = new Vector2(xForce, 0);
-
-        rb.AddForce(force);
-        Debug.Log(rb.velocity);
-    }
-    */
+    } // END
 
 
 
@@ -121,7 +110,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsRolling", false);
         isRolling = false;
 
-    }
+    } // END
+
 
     // Update is called once per frame
     void Update()
@@ -130,12 +120,6 @@ public class PlayerController : MonoBehaviour
         
         if (canRoll)
         {
-            //Vector3 tempVect = new Vector3(-1000, 0, 0);
-            //tempVect = tempVect.normalized * rollSpeed * Time.deltaTime;
-
-            //Find which direction he needs to go
-            //Replace Vector3(-1000) with the appropriate Vector Direction
-
             StartCoroutine(StartRoll());
 
             if(canRoll)
@@ -155,14 +139,12 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
-
-
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && DkGrounded())
         {
             float dkJump = 20f;
-            float RamiJump = 25;
+            float RamiJump = 15;
             if (hasRhino == false)
             {
                 rb.velocity = Vector2.up * dkJump;
@@ -187,7 +169,6 @@ public class PlayerController : MonoBehaviour
                 {
 
                     canRoll = true;
-                    //StartCoroutine(StartRoll());
                     isRolling = true;
                     animator.SetBool("IsRolling", true);
                     canDash = false;
@@ -199,12 +180,8 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("IsRolling", true);
                     canDash = false;
 
-                    
-                    //rb.AddForce(moveRight  * 3f);
-                    //this.transform.Translate(moveRight * Time.deltaTime);
                 }
 
-                //canDash = true;
             }
         }
         else if (Input.GetKey(KeyCode.LeftShift) && DkGrounded())
@@ -221,56 +198,9 @@ public class PlayerController : MonoBehaviour
             dkSpeed = dkWalk;
             animator.SetBool("IsSprinting", false);
         }
+    } // END Update
 
-        /*if (Input.GetKey(KeyCode.A))
-        {
-            animator.SetBool("IsWalking", true);
-            direction = 1;
-            mySpriteRenderer.flipX = true;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            animator.SetBool("IsWalking", true);
-            direction = 2;
-            mySpriteRenderer.flipX = false;
-        }
-        else
-        {
-            animator.SetBool("IsWalking", false);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true && hasRhino == false)
-        {
-            dkRoll();
-        }
 
-        if (Input.GetButton("shift") == true && hasRhino == false && isGrounded == true) //if shift is held, increase jumpPower and moveSpeed
-        {
-            animator.SetBool("IsSprinting", true);
-            moveSpeed = sprintSpeed; //set move speed to increased sprint speed
-            jumpPower = 25f; //increase jumpPower
-            
-            Debug.Log("Start Sprinting");
-        }
-        else if (Input.GetKey("s")) //if s is held, decrease moveSpeed
-        {
-            moveSpeed = crouchSpeed; //set move speed to reduced crouch speed
-
-            Debug.Log("Crouched");
-        }
-        else if (hasRhino == true)
-        {
-            moveSpeed = 10f; //reset moveSpeed and jumpPower variables
-            jumpPower = 10f;
-        }
-        else
-        {
-            moveSpeed = 5f; //reset moveSpeed and jumpPower variables
-            jumpPower = 20f;
-            animator.SetBool("IsSprinting", false);
-        }
-
-        */
-    }
     private void FixedUpdate()
     {
         
@@ -314,33 +244,53 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsWalking", false);
             }
         }
-    }
-    void OnTriggerEnter2D(Collider2D collision)
+    } // END FixedUpdate
+
+
+    void OnCollisionEnter2D (Collision2D collision)
     {
-        CheckIfDead(collision);
-    }
-    public void CheckIfDead(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy" && isRolling == false && hasRhino == false)
+        if (collision.gameObject.transform.GetChild(0).tag == "Head" && isRolling == false && hasRhino == false)
         {
-            gameObject.SetActive(false);
+            Debug.Log("Hit Head");
+            collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
+            rb.velocity = Vector2.up * bounceJump;
         }
-        else if (collision.gameObject.tag == "Enemy" && isRolling == true)
+        else if (collision.gameObject.transform.GetChild(1).CompareTag("Body") && isRolling == false && hasRhino == false)
         {
-            //Enemy.gameObject.SetActive(false);
+            Debug.Log("Hit Body");
+        
         }
-        else if (collision.gameObject.tag == "Enemy" && hasRhino == true)
+        else if (collision.gameObject.CompareTag("Enemy") && isRolling == true)
         {
-            //Enemy.gameObject.SetActive(false);
-            //Enemy2.gameObject.SetActive(false);
+            collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
         }
-        if (collision.gameObject.tag == "Rhino")
+        else if (collision.gameObject.CompareTag("Enemy") && hasRhino == true)
+        {
+            //collision.gameObject.SetActive(false);
+            collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
+        }
+        else if (collision.gameObject.CompareTag("Rhino"))
         {
             hasRhino = true;
             animator.SetBool("IsRhino", true);
             Destroy(Rhino.gameObject);
         }
-    }
+
+    } // END ONSollisiENter2D
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        //CheckIfDead(collision);
+        if(collision.gameObject.CompareTag("Rhino"))
+        {
+            hasRhino = true;
+            animator.SetBool("IsRhino", true);
+            Destroy(Rhino.gameObject);
+            Ram.gameObject.SetActive(true);
+        }
+    } // END OnTriggerEnter2D
+
     private bool DkGrounded()
     {
         float extraHeightText = 0.5f;
@@ -365,6 +315,52 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(boxCollider2d.bounds.center + new Vector3(boxCollider2d.bounds.extents.x, boxCollider2d.bounds.extents.y), Vector2.right * (boxCollider2d.bounds.extents.x));
         Debug.Log(raycastHit.collider);
         return raycastHit.collider != null;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+         * public void CheckIfDead(Collider2D collision)
+        {
+            if (collision.gameObject.tag == "Enemy" && isRolling == false && hasRhino == false)
+            {
+                gameObject.SetActive(false);
+            }
+            else if (collision.gameObject.tag == "Enemy" && isRolling == true)
+            {
+                collision.gameObject.SetActive(false);
+            }
+            else if (collision.gameObject.tag == "Enemy" && hasRhino == true)
+            {
+                collision.gameObject.SetActive(false);
+            }
+            if (collision.gameObject.tag == "Rhino")
+            {
+                hasRhino = true;
+                animator.SetBool("IsRhino", true);
+                Destroy(Rhino.gameObject);
+            }
+        }
+        */
+
+
+
     }
     /*
      * void dkRoll()

@@ -5,24 +5,27 @@ using UnityEngine;
 public class HeadScript : MonoBehaviour
 {
 
-    public GameObject Enemy;
+    public GameObject Player;
     // Start is called before the first frame update
-    void Start()
-    {
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        CheckIfDead(collision);
+        //CheckIfDead(collision);
         //CheckIfBounce(enemyCollision);
     }
+
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            Debug.Log("Collided w/ player");
+            this.gameObject.SetActive(false);
+        }
+    }
+
 
     void CheckIfDead(Collider2D collision)
     {
@@ -30,7 +33,7 @@ public class HeadScript : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //Destroy(transform.parent.gameObject);
-            transform.parent.gameObject.SetActive(false);
+            //transform.parent.gameObject.SetActive(false);
             //Enemy.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             Debug.Log("head hit");
         }

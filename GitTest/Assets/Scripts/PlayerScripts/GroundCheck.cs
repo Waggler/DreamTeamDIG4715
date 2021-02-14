@@ -18,11 +18,16 @@ public class GroundCheck : MonoBehaviour
     {
         
     }
+    void OnTriggerStay2D()
+    { 
     
+    }
+
      
     void OnTriggerEnter2D(Collider2D collision)
     {
         CheckIfGround(collision);
+
         //CheckIfBounce(enemyCollision);
     }
 
@@ -39,14 +44,16 @@ public class GroundCheck : MonoBehaviour
             Player.GetComponent<PlayerController>().isGrounded = true;
             Debug.Log("On Ground");
         }
-        else if (collision.gameObject.tag == "Head")
+        else if (collision.gameObject.CompareTag("Enemy")  && collision.transform.GetChild(0).gameObject.CompareTag("Head"))
         {
-            Instantiate(particles, this.gameObject.transform.position, this.gameObject.transform.rotation);
-            particles.gameObject.SetActive(true);
-            particles.Play();
-            Player.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 25f), ForceMode2D.Impulse);
-            Debug.Log("Bounce on Enemy");
+            //Instantiate(particles, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            //particles.gameObject.SetActive(true);
+            //particles.Play();
+            //Player.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 25f), ForceMode2D.Impulse);
+            //rb.velocity = Vector2.up * dkJump;
+            //.Log("Turn off Enemy");
             //Destroy(collision.gameObject);
+            //collision.gameObject.SetActive(false);
         }
     }
 }
