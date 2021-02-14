@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class BodyScript : MonoBehaviour
 {
-    public GameObject Player;
-    public GameObject Enemy;
+    //public GameObject Player;
+    //public GameObject Enemy;
     public bool dead = false;
 
     public bool playerRhino;
     public bool playerRolling;
+    public int hitByEnemy = 1;
     // Start is called before the first frame update
 
     void Awake()
@@ -18,16 +19,18 @@ public class BodyScript : MonoBehaviour
     }
     void Start()
     {
-       //playerScript = GameObject.Find("Player").GetComponent<PlayerController>().hasRhino;
+        //playerScript = GameObject.Find("Player").GetComponent<PlayerController>().hasRhino;
     }
 
     // Update is called once per frame
     void Update()
     {
-       playerRhino = GameObject.Find("Player").GetComponent<PlayerController>().hasRhino;
-       playerRolling = GameObject.Find("Player").GetComponent<PlayerController>().isRolling;
-       
-       //transform.parent.gameObject.SetActive(false);
+        //playerRhino = GameObject.Find("Player").GetComponent<PlayerController>().hasRhino;
+        playerRolling = GameObject.Find("Player").GetComponent<PlayerController>().isRolling;
+        //livesCount = GameObject.Find("ScoreManager").GetComponent<ScoreScript>().lives;
+
+
+        //transform.parent.gameObject.SetActive(false);
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -40,17 +43,17 @@ public class BodyScript : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        
-        if(col.gameObject.GetComponent<PlayerController>().hasRhino == true)
+
+        if (col.gameObject.GetComponent<PlayerController>().hasRhino == true)
         {
-             gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
-        else if(col.gameObject.tag == "Player" && col.gameObject.GetComponent<PlayerController>().isRolling == false)
+        else if (col.gameObject.tag == "Player" && col.gameObject.GetComponent<PlayerController>().isRolling == false)
         {
             Debug.Log("Collided wuith player");
-            col.gameObject.SetActive(false);
+            ScoreScript.instance.DecreaseLives(hitByEnemy);
         }
-        
+
         /*if(col.gameObject.tag == "Player" && col.gameObject.GetComponent<PlayerController>().hasRhino == false)
         {
             Debug.Log("Collided wuith rhino");

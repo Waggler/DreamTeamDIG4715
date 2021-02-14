@@ -9,13 +9,16 @@ public class ScoreScript : MonoBehaviour
     public static ScoreScript instance;
     public TextMeshProUGUI bananaText;
     public TextMeshProUGUI livesText;
+    public GameObject DK;
 
-    int score;
-    int lives;
+    public int score;
+    public int lives;
 
     // Start is called before the first frame update
     void Start()
     {
+        livesText.text = "x" + lives.ToString();
+        bananaText.text = "x" + score.ToString();
         if (instance == null)
         {
             instance = this;
@@ -32,5 +35,14 @@ public class ScoreScript : MonoBehaviour
     {
         lives += balloon;
         livesText.text = "x" + lives.ToString();
+    }
+    public void DecreaseLives(int hitByEnemy)
+    {
+        lives -= hitByEnemy;
+        livesText.text = "x" + lives.ToString();
+        if (lives < 1)
+        {
+            DK.gameObject.SetActive(false);
+        }
     }
 }
