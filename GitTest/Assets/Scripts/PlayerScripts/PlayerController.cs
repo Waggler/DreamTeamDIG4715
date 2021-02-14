@@ -266,6 +266,7 @@ public class PlayerController : MonoBehaviour
                 collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
                 rb.velocity = Vector2.up * bounceJump;
                 audioSource.PlayOneShot(killBeaver, 0.7F);
+                GameObject.Find("EnemySpawn").GetComponent<Spawner>().Dead();
             }
             else if (collision.gameObject.transform.GetChild(1).CompareTag("Body") && isRolling == false && hasRhino == false)
             {
@@ -276,12 +277,14 @@ public class PlayerController : MonoBehaviour
             {
                 collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
                 audioSource.PlayOneShot(killBeaver, 0.7F);
+                GameObject.Find("EnemySpawn").GetComponent<Spawner>().Dead();
             }
             else if (collision.gameObject.CompareTag("Enemy") && hasRhino == true)
             {
                 //collision.gameObject.SetActive(false);
                 collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
                 audioSource.PlayOneShot(killBeaver, 0.7F);
+                GameObject.Find("EnemySpawn").GetComponent<Spawner>().Dead();
             }
             else if (collision.gameObject.CompareTag("Rhino"))
             {

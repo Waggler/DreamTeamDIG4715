@@ -9,6 +9,8 @@ public class RamEnemy : MonoBehaviour
 
     public AudioClip beaverKill;
     public AudioSource audioSource;
+    public Transform RhinoParticlePosition;
+    public ParticleSystem killParticle;
 
     // Start is called before the first frame update
 
@@ -30,6 +32,7 @@ public class RamEnemy : MonoBehaviour
             Debug.Log("RAM ENEMY");
 
             audioSource.PlayOneShot(beaverKill, 0.7F);
+            Instantiate(killParticle, RhinoParticlePosition.transform.position, RhinoParticlePosition.transform.rotation);
             //col.gameObject.SetActive(false);
         }
     }
