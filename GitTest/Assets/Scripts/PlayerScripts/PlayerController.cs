@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask groundMask;
@@ -17,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public float timer;
     public float waitTime = 2;
-    public float timerReset= 0;
+    public float timerReset = 0;
 
 
     public float jumpPower = 20f; //determines height of jump
@@ -75,6 +77,12 @@ public class PlayerController : MonoBehaviour
     private bool canRoll = false;
 
 
+    public AudioClip banannaEat;
+    public AudioClip balloonPop;
+    public AudioClip killBeaver;
+    public AudioSource audioSource;
+
+
 
 
     private void Awake() // This function is called just one time by Unity the moment the component loads
@@ -84,7 +92,7 @@ public class PlayerController : MonoBehaviour
         boxCollider2d = GetComponent<BoxCollider2D>();
 
     } // END
-    
+
 
     void Start()
     {
@@ -95,8 +103,8 @@ public class PlayerController : MonoBehaviour
 
         tempVectRight = new Vector3(1000, 0, 0);
         tempVectRight = tempVectRight.normalized * rollSpeed * Time.deltaTime;
-        
-        
+
+
         tempVectLeft = new Vector3(-1000, 0, 0);
         tempVectLeft = tempVectLeft.normalized * rollSpeed * Time.deltaTime;
     } // END
@@ -117,12 +125,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        
+
         if (canRoll)
         {
             StartCoroutine(StartRoll());
 
-            if(canRoll)
+            if (canRoll)
             {
 
                 if (direction == 1)
@@ -133,9 +141,9 @@ public class PlayerController : MonoBehaviour
                 {
                     rb.MovePosition(transform.position + tempVectRight);
                 }
-                
+
             }
-            else 
+            else
             {
                 return;
             }
@@ -203,7 +211,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         if (Input.GetKey(KeyCode.A))
@@ -216,7 +224,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(-RamiSpeed, rb.velocity.y);
             }
-            
+
             animator.SetBool("IsWalking", true);
             direction = 1;
             mySpriteRenderer.flipX = true;
@@ -247,33 +255,40 @@ public class PlayerController : MonoBehaviour
     } // END FixedUpdate
 
 
-    void OnCollisionEnter2D (Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.transform.GetChild(0).tag == "Head" && isRolling == false && hasRhino == false)
+
+        if (collision.gameObject.transform.childCount != 0)
         {
-            Debug.Log("Hit Head");
-            collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
-            rb.velocity = Vector2.up * bounceJump;
-        }
-        else if (collision.gameObject.transform.GetChild(1).CompareTag("Body") && isRolling == false && hasRhino == false)
-        {
-            Debug.Log("Hit Body");
-        
-        }
-        else if (collision.gameObject.CompareTag("Enemy") && isRolling == true)
-        {
-            collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
-        }
-        else if (collision.gameObject.CompareTag("Enemy") && hasRhino == true)
-        {
-            //collision.gameObject.SetActive(false);
-            collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
-        }
-        else if (collision.gameObject.CompareTag("Rhino"))
-        {
-            hasRhino = true;
-            animator.SetBool("IsRhino", true);
-            Destroy(Rhino.gameObject);
+            if (collision.gameObject.transform.GetChild(0).tag == "Head" && isRolling == false && hasRhino == false)
+            {
+                Debug.Log("Hit Head");
+                collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
+                rb.velocity = Vector2.up * bounceJump;
+                audioSource.PlayOneShot(killBeaver, 0.7F);
+            }
+            else if (collision.gameObject.transform.GetChild(1).CompareTag("Body") && isRolling == false && hasRhino == false)
+            {
+                Debug.Log("Hit Body");
+
+            }
+            else if (collision.gameObject.CompareTag("Enemy") && isRolling == true)
+            {
+                collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
+                audioSource.PlayOneShot(killBeaver, 0.7F);
+            }
+            else if (collision.gameObject.CompareTag("Enemy") && hasRhino == true)
+            {
+                //collision.gameObject.SetActive(false);
+                collision.gameObject.transform.GetChild(1).GetComponent<BodyScript>().die();
+                audioSource.PlayOneShot(killBeaver, 0.7F);
+            }
+            else if (collision.gameObject.CompareTag("Rhino"))
+            {
+                hasRhino = true;
+                animator.SetBool("IsRhino", true);
+                Destroy(Rhino.gameObject);
+            }
         }
 
     } // END ONSollisiENter2D
@@ -282,13 +297,32 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         //CheckIfDead(collision);
-        if(collision.gameObject.CompareTag("Rhino"))
+        if (collision.gameObject.CompareTag("Rhino"))
         {
             hasRhino = true;
             animator.SetBool("IsRhino", true);
             Destroy(Rhino.gameObject);
             Ram.gameObject.SetActive(true);
         }
+        if (collision.gameObject.CompareTag("1Up"))
+        {
+            audioSource.PlayOneShot(balloonPop, 0.7F);
+        }
+        if (collision.gameObject.CompareTag("Banana"))
+        {
+            audioSource.PlayOneShot(banannaEat, 0.7F);
+        }
+        if (collision.gameObject.CompareTag("BananaBunch"))
+        {
+            audioSource.PlayOneShot(banannaEat, 0.7F);
+        }
+        if (collision.gameObject.CompareTag("Killzone"))
+        {
+            gameObject.SetActive(false);
+            //Debug.Log("Kill Zone Activated");
+        }
+
+
     } // END OnTriggerEnter2D
 
     private bool DkGrounded()
@@ -448,6 +482,3 @@ private void OnCollisionEnter2D(Collision2D collision)
     }
 }*/
 }
-
-
-

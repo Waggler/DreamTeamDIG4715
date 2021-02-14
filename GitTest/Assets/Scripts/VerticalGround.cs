@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class VerticalGround : MonoBehaviour
 {
     private PlatformEffector2D effector;
     public float waitTime;
+    private PlayerController PlayerController;
 
     // Start is called before the first frame update
     void Start()
     {
         effector = GetComponent<PlatformEffector2D>();
+        PlayerController = GameObject.Find("CharTest_DK").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.S) && PlayerController.hasRhino == false)
         {
             waitTime = 0.05f;
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && PlayerController.hasRhino == false)
         {
             if (waitTime <= 0)
             {
@@ -34,7 +38,7 @@ public class VerticalGround : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && PlayerController.hasRhino == false)
         {
             effector.rotationalOffset = 0;
         }
