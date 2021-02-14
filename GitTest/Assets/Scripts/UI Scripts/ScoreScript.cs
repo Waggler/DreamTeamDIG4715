@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreScript : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class ScoreScript : MonoBehaviour
         livesText.text = "x" + lives.ToString();
         if (lives < 1)
         {
-            DK.gameObject.SetActive(false);
+            SceneManager.LoadScene("Lose Screen");
         }
     }
 }

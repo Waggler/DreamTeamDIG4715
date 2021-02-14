@@ -951,8 +951,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 87.8, y: -118.2}
-  m_SizeDelta: {x: 129.10129, y: 156.62778}
+  m_AnchoredPosition: {x: 87.8, y: -125.88}
+  m_SizeDelta: {x: 129.10129, y: 188.70908}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376271894
 MonoBehaviour:
@@ -974,8 +974,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Controls\nMove / Jump | Shift / Roll\nWASD / Spacebar \nSHIFT / On cooldown\nRhino\nPress
-    E to get off\n"
+  m_text: "Controls\nMove / Jump | Roll\nWASD / Spacebar | R\nSprint / Rhino \nShift/
+    Press E to get off\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50f73a5e7123f8241a5714b475152532, type: 2}
   m_sharedMaterial: {fileID: 6307254444970868068, guid: 50f73a5e7123f8241a5714b475152532, type: 2}
@@ -1002,8 +1002,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
