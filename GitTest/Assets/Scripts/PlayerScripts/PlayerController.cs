@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     public float dkJump;
     public float dkSprint;
     public float dkWalk;
+    public float RamiSpeed;
+    public float RamiJump;
+
+
     public float timer;
     public float waitTime = 2;
     public float timerReset= 0;
@@ -115,6 +119,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         canRoll = false;
         animator.SetBool("IsRolling", false);
+        isRolling = false;
+
     }
 
     // Update is called once per frame
@@ -156,7 +162,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && DkGrounded())
         {
             float dkJump = 20f;
-            rb.velocity = Vector2.up * dkJump;
+            float RamiJump = 25;
+            if (hasRhino == false)
+            {
+                rb.velocity = Vector2.up * dkJump;
+            }
+            else
+            {
+                rb.velocity = Vector2.up * RamiJump;
+            }
             animator.SetBool("IsJumping", true);
         }
         else if (Input.GetKey(KeyCode.E))
@@ -264,7 +278,15 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         if (Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector2(-dkSpeed, rb.velocity.y);
+            if (hasRhino == false)
+            {
+                rb.velocity = new Vector2(-dkSpeed, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-RamiSpeed, rb.velocity.y);
+            }
+            
             animator.SetBool("IsWalking", true);
             direction = 1;
             mySpriteRenderer.flipX = true;
@@ -273,7 +295,14 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.D))
             {
-                rb.velocity = new Vector2(+dkSpeed, rb.velocity.y);
+                if (hasRhino == false)
+                {
+                    rb.velocity = new Vector2(+dkSpeed, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(+RamiSpeed, rb.velocity.y);
+                }
                 animator.SetBool("IsWalking", true);
                 direction = 2;
                 mySpriteRenderer.flipX = false;
